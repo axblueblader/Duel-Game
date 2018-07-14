@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package duelgame;
+
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
+/**
+ *
+ * @author Blu
+ */
+public class DuelGame {
+
+    /**
+     * @param args the command line arguments
+     */
+    private Player human;
+    private Player bot;
+    public DuelGame(){
+        human = new Player();
+        bot = new Player();
+    }
+    public boolean isPlayerReady(){
+        return human.getActionIndex() != 4;
+    }
+    public void runGameLogic() {
+        // COMPUTE AI DECISION HERE
+        Random r = new Random();
+        bot.setActionIndex(r.nextInt(2));
+       
+        //--------------------
+        human.updateChanges(0);
+        bot.updateChanges(human.getActionIndex());
+        human.updateProperties();
+        bot.updateProperties();
+    }
+    public boolean shieldEnabled(){
+        return human.canShield();
+    }
+    public boolean channelEnabled(){
+        return human.canChannel();
+    }
+    public boolean blastEnabled(){
+        return human.canBlast();
+    }
+    public void setHumanAction(int humanActionIdx) {
+        human.setActionIndex(humanActionIdx);
+    }
+    public int getActionIdx(int player) {
+        if (player == 0) {
+            return human.getActionIndex();
+        }
+        else return bot.getActionIndex();
+    }
+    public int[] getPlayerProperties(int player) {
+        if (player == 0) {
+            return human.getProperties();
+        }
+        else return bot.getProperties();
+    }
+    public int[] getPlayerChanges(int player) {
+        if (player == 0) {
+            return human.getChanges();
+        }
+        else return bot.getChanges();
+    }
+}
