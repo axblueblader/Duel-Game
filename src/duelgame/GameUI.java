@@ -245,16 +245,18 @@ public class GameUI extends javax.swing.JFrame {
 
         humanHealthText.setEditable(false);
         humanHealthText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        humanHealthText.setText("0");
+        humanHealthText.setText("5");
         humanHealthText.setFocusable(false);
         jPanel2.add(humanHealthText);
 
         humanActionText.setEditable(false);
         humanActionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        humanActionText.setText("jTextField1");
+        humanActionText.setText("------------");
+        humanActionText.setToolTipText("");
         humanActionText.setFocusable(false);
         humanActionText.setMaximumSize(new java.awt.Dimension(69, 22));
         humanActionText.setMinimumSize(new java.awt.Dimension(69, 22));
+        humanActionText.setPreferredSize(new java.awt.Dimension(69, 22));
         jPanel2.add(humanActionText);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -289,16 +291,17 @@ public class GameUI extends javax.swing.JFrame {
 
         botHealthText.setEditable(false);
         botHealthText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        botHealthText.setText("0");
+        botHealthText.setText("5");
         botHealthText.setFocusable(false);
         jPanel3.add(botHealthText);
 
         botActionText.setEditable(false);
         botActionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        botActionText.setText("jTextField1");
+        botActionText.setText("------------");
         botActionText.setFocusable(false);
         botActionText.setMaximumSize(new java.awt.Dimension(69, 22));
         botActionText.setMinimumSize(new java.awt.Dimension(69, 22));
+        botActionText.setPreferredSize(new java.awt.Dimension(69, 22));
         jPanel3.add(botActionText);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -382,7 +385,6 @@ public class GameUI extends javax.swing.JFrame {
         botHealthText.setText("" + botProperties[0]);
         botManaText.setText("" + botProperties[1]);
         botShieldText.setText("" + botProperties[2]);
-
     }
 
     public void updateButtons() {
@@ -417,9 +419,13 @@ public class GameUI extends javax.swing.JFrame {
     private void lockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockButtonActionPerformed
         if (game.isPlayerReady()) {
             game.runGameLogic();
+            //This is put here because the bot choice should
+            //only be shown after player has chosen
+            botActionText.setText(ACTION_NAME[game.getActionIdx(1)]);
+            showChanges();
             showProperties();
             updateButtons();
-            showChanges();
+            checkGameCondition();
             // TODO: Centering frames
             // popup frame showChangesFrame
         } else {
@@ -432,6 +438,17 @@ public class GameUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botManaTextActionPerformed
 
+    private void checkGameCondition() {
+        if (game.isFinished()) {
+            JOptionPane.showMessageDialog(new JFrame(), game.getWinner() + " won the game \n A new game will start now", "Dialog",
+                    JOptionPane.INFORMATION_MESSAGE);            
+            game = new DuelGame();
+        }
+        showProperties();
+        updateButtons();
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -504,4 +521,5 @@ public class GameUI extends javax.swing.JFrame {
     private javax.swing.JButton shieldButton;
     private javax.swing.JButton slashButton;
     // End of variables declaration//GEN-END:variables
+
 }

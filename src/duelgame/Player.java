@@ -72,7 +72,6 @@ public class Player {
         health = health - damageTaken;
         mana = mana + manaChanges;
         shieldCount = shieldCount + shieldChanges;
-        actionIndex = 4;
     }
 
     public int[] getProperties() {

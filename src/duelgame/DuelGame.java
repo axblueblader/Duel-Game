@@ -20,6 +20,7 @@ public class DuelGame {
      */
     private Player human;
     private Player bot;
+    private String winner;
     public DuelGame(){
         human = new Player();
         bot = new Player();
@@ -30,13 +31,24 @@ public class DuelGame {
     public void runGameLogic() {
         // COMPUTE AI DECISION HERE
         Random r = new Random();
+        if (bot.canShield())
         bot.setActionIndex(r.nextInt(2));
-       
+        else bot.setActionIndex(0);
         //--------------------
-        human.updateChanges(0);
+        human.updateChanges(bot.getActionIndex());
         bot.updateChanges(human.getActionIndex());
         human.updateProperties();
         bot.updateProperties();
+    }
+    
+    public boolean isFinished(){
+        if(human.getHealth() == 0) {winner = "Bot"; return true;};
+        if(bot.getHealth() == 0) {winner = "Human"; return true;};
+        return false;
+    }
+    
+    public String getWinner(){
+        return winner;
     }
     public boolean shieldEnabled(){
         return human.canShield();
