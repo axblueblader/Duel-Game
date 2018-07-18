@@ -18,6 +18,8 @@ public class DuelGame {
      */
     private final Player human;
     private final Player bot;
+    public static final int HUMAN = 0;
+    public static final int BOT = 1;
     private String winner;
     public DuelGame(){
         human = new Player();
@@ -65,19 +67,19 @@ public class DuelGame {
         human.setActionIndex(humanActionIdx);
     }
     public int getActionIdx(int player) {
-        if (player == 0) {
+        if (player == HUMAN) {
             return human.getActionIndex();
         }
         else return bot.getActionIndex();
     }
     public int[] getPlayerProperties(int player) {
-        if (player == 0) {
+        if (player == HUMAN) {
             return human.getProperties();
         }
         else return bot.getProperties();
     }
     public int[] getPlayerChanges(int player) {
-        if (player == 0) {
+        if (player == HUMAN) {
             return human.getChanges();
         }
         else return bot.getChanges();
