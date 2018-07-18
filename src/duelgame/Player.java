@@ -23,7 +23,7 @@ public class Player {
     private static final int MAX_SHIELD = 2;
     private static final int MAX_MANA = 2;
     private static final int MAX_HEALTH = 5;
-//    private String name;
+//  private String name;
     private int health;
     private int mana;
     private int manaChanges;
@@ -70,7 +70,7 @@ public class Player {
                 break;
         }
     }
-
+    
     public void updateProperties() {
         health = health - damageTaken;
         mana = mana + manaChanges;
