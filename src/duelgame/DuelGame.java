@@ -20,21 +20,40 @@ public class DuelGame {
     private final Player bot;
     public static final int HUMAN = 0;
     public static final int BOT = 1;
+    private static final int MAX_ROUND = 10;
+    private int roundCount;
+
     private String winner;
     public DuelGame(){
         human = new Player();
         bot = new Player();
+        roundCount = 0;
     }
+    
     public boolean isPlayerReady(){
         return human.getActionIndex() != 4;
+    }
+    
+    public int getRoundCount() {
+        return roundCount;
     }
     public void runGameLogic() {
         // COMPUTE AI DECISION HERE
         Random r = new Random();
-        if (bot.canShield())
-        bot.setActionIndex(r.nextInt(2));
+        int randomChoice = r.nextInt(100);
+        // When shield, chance of SLASH/SHIELD = 66/33
+        if (bot.canShield()){
+            // Increase percentage of SLASH by bot
+            if (randomChoice < 66) bot.setActionIndex(0);
+            else bot.setActionIndex(1);
+    
+        }
         else bot.setActionIndex(0);
-        //--------------------
+        
+        // INCREASE ROUND COUNT
+        roundCount = roundCount + 1;
+        
+        // UPDATE CHANGES
         human.updateChanges(bot.getActionIndex());
         bot.updateChanges(human.getActionIndex());
         human.updateProperties();
@@ -42,12 +61,14 @@ public class DuelGame {
     }
     
     public boolean isFinished(){
-        if (human.getHealth() == 0 && bot.getHealth() == 0) 
+        if ((human.getHealth() == 0 && bot.getHealth() == 0)
+                || (roundCount == MAX_ROUND)) 
         {winner ="The game was draw"; return true;}
         if(human.getHealth() == 0) 
         {winner = "Bot won the game"; return true;}
         if(bot.getHealth() == 0) 
         {winner = "Human won the game"; return true;}
+        
         return false;
     }
     

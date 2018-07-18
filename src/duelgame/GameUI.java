@@ -43,8 +43,9 @@ public class GameUI extends javax.swing.JFrame {
         botManaChangesLabel = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         guidePanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         slashButton = new javax.swing.JButton();
         shieldButton = new javax.swing.JButton();
@@ -155,23 +156,28 @@ public class GameUI extends javax.swing.JFrame {
         gridBagConstraints.ipady = 15;
         changesPanel.add(jLabel12, gridBagConstraints);
 
-        guidePanel.setMinimumSize(new java.awt.Dimension(550, 400));
-        guidePanel.setPreferredSize(new java.awt.Dimension(550, 400));
+        guidePanel.setMinimumSize(new java.awt.Dimension(550, 550));
+        guidePanel.setPreferredSize(new java.awt.Dimension(550, 550));
         guidePanel.setLayout(new javax.swing.BoxLayout(guidePanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 400));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 400));
+        jTextPane2.setContentType("text/html"); // NOI18N
+        jTextPane2.setText("<html>\r\n  <head>\n\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}\n.tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}\n</style>\r\n  </head>\r\n  <body>\r\n    <h2>Welcome to the Duel Game</h2>\n    <p style=\"margin-top: 0\">\r\n      How to play<br>\nYou're goal is to defeat the enemy before 10 rounds.<br>\nEach round, you can choose between 4 choices.<br>\n<h3>1. SLASH:</h3>\nDeals 2 damage to enemy\n<br>Deals 1 damage to enemy, if enemy use SLASH aswell<br>\n<h3>2. SHIELD:</h3>\nCan block damage from SLASH\n<br>After SHIELD 2 times, it takes 1 turn to recharge<br>\n<h3>3. CHANNEL:</h3>\nIncrease your MANA by 1\n<h3>4. BLAST:</h3>\nRequires 2 MANA to use\n<br>Deals 3 damage to enemy, and block SLASH aswell\n<br><h3>Table for reference:</h3>\n    </p>\r\n<table class=\"tg\">\n  <tr>\n    <th class=\"tg-c3ow\"></th>\n    <th class=\"tg-c3ow\">SLASH</th>\n    <th class=\"tg-c3ow\">SHIELD</th>\n    <th class=\"tg-c3ow\">CHANNEL</th>\n    <th class=\"tg-c3ow\">BLAST</th>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">SLASH</td>\n    <td class=\"tg-c3ow\">1</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">SHIELD</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">CHANNEL</td>\n    <td class=\"tg-c3ow\">2</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">BLAST</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-wp8o\">3</td>\n  </tr>\n</table>\n  </body>\r\n</html>\r\n");
+        jScrollPane3.setViewportView(jTextPane2);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("\t\tWelcome to the Duel Game\n\tHow to play:\nYou're goal is to defeat the enemy before 10 rounds.\nEach round, you can choose between 4 choices.\n1. SLASH:\n\tDeals 2 damage to enemy\n\tDeals 1 damage to enemy, if enemy use SLASH aswell\n2. SHIELD:\n\tCan block damage from SLASH\n\tAfter SHIELD 2 times, it takes 1 turn to recharge\n3. CHANNEL:\n\tIncrease your MANA by 1\n4. BLAST:\n\tRequires 2 MANA to use\n\tDeals 3 damage to enemy, and block SLASH aswell\n\nTable for reference:\n\t\t");
-        jTextArea1.setMinimumSize(new java.awt.Dimension(550, 400));
-        jTextArea1.setPreferredSize(new java.awt.Dimension(550, 400));
-        jScrollPane2.setViewportView(jTextArea1);
+        guidePanel.add(jScrollPane3);
 
-        guidePanel.add(jScrollPane2);
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DUEL GAME");
@@ -472,10 +478,12 @@ public class GameUI extends javax.swing.JFrame {
         private static final int SHIELD = 2;
         private Properties() {};
     }
+    
     public void showChanges() {
         int[] humanChanges = game.getPlayerChanges(DuelGame.HUMAN);
         int[] botChanges = game.getPlayerChanges(DuelGame.BOT);
         playerHealthChangesLabel.setText("" + humanChanges[Properties.HEALTH]);
+        // a.setText(""+changes["key"]);
         playerManaChangesLabel.setText("" + humanChanges[Properties.MANA]);
         botHealthChangesLabel.setText("" + botChanges[Properties.HEALTH]);
         botManaChangesLabel.setText("" + botChanges[Properties.MANA]);
@@ -618,6 +626,7 @@ public class GameUI extends javax.swing.JFrame {
     private javax.swing.JTextField humanManaText;
     private javax.swing.JTextField humanShieldText;
     private javax.swing.JButton jButton1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -636,9 +645,9 @@ public class GameUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JButton lockButton;
     private javax.swing.JLabel playerHealthChangesLabel;
     private javax.swing.JLabel playerManaChangesLabel;
