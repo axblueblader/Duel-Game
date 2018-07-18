@@ -283,6 +283,7 @@ public class GameUI extends javax.swing.JFrame {
         jPanel3.add(botHealthText);
 
         botActionText.setEditable(false);
+        botActionText.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         botActionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         botActionText.setText("-------------");
         botActionText.setFocusable(false);
@@ -345,6 +346,7 @@ public class GameUI extends javax.swing.JFrame {
         jPanel2.add(humanHealthText);
 
         humanActionText.setEditable(false);
+        humanActionText.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         humanActionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         humanActionText.setText("-------------");
         humanActionText.setToolTipText("");
