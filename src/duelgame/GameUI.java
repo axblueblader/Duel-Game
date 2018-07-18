@@ -440,7 +440,7 @@ public class GameUI extends javax.swing.JFrame {
 
     private void checkGameCondition() {
         if (game.isFinished()) {
-            JOptionPane.showMessageDialog(new JFrame(), game.getWinner() + " won the game \n A new game will start now", "Dialog",
+            JOptionPane.showMessageDialog(new JFrame(), game.getWinner() + "\n A new game will start now", "Dialog",
                     JOptionPane.INFORMATION_MESSAGE);            
             game = new DuelGame();
         }

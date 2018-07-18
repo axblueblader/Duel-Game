@@ -16,10 +16,13 @@ public class Player {
     private static final int[][] DAMAGE_RESULT = { 
             //  result is damage taken by this player
             { 1, 0, 0, 3 }, // SLASH vs sl,sh,ch,bl
-            { 0, 0, 0, 2 }, // SHIELD vs sl,sh,ch,bl
+            { 0, 0, 0, 3 }, // SHIELD vs sl,sh,ch,bl
             { 2, 0, 0, 3 }, // CHANNEL vs sl,sh,ch,bl
-            { 2, 0, 0, 3 }  // BLAST vs sl,sh,ch,bl
+            { 0, 0, 0, 3 }  // BLAST vs sl,sh,ch,bl
     };
+    private static final int MAX_SHIELD = 2;
+    private static final int MAX_MANA = 2;
+    private static final int MAX_HEALTH = 5;
 //    private String name;
     private int health;
     private int mana;
@@ -31,7 +34,7 @@ public class Player {
 
     public Player() {
  //     name = playerName;
-        health = 5;
+        health = MAX_HEALTH;
         mana = 0;
         shieldCount = 0;
         damageTaken = 0;
@@ -39,13 +42,13 @@ public class Player {
     }
 
     public boolean canShield(){
-        return shieldCount != 3;
+        return shieldCount != MAX_SHIELD;
     }
     public boolean canChannel(){
-        return mana != 2;
+        return mana != MAX_MANA;
     }
     public boolean canBlast(){
-        return mana == 2;
+        return mana == MAX_MANA;
     }
     public void updateChanges(int enemyActionIdx) {
         if (canShield() == false) 

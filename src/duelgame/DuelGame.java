@@ -5,9 +5,7 @@
  */
 package duelgame;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  *
@@ -18,8 +16,8 @@ public class DuelGame {
     /**
      * @param args the command line arguments
      */
-    private Player human;
-    private Player bot;
+    private final Player human;
+    private final Player bot;
     private String winner;
     public DuelGame(){
         human = new Player();
@@ -42,8 +40,9 @@ public class DuelGame {
     }
     
     public boolean isFinished(){
-        if(human.getHealth() == 0) {winner = "Bot"; return true;};
-        if(bot.getHealth() == 0) {winner = "Human"; return true;};
+        if (human.getHealth() == 0 && bot.getHealth() == 0) {winner ="The game was draw"; return true;};
+        if(human.getHealth() == 0) {winner = "Bot won the game"; return true;};
+        if(bot.getHealth() == 0) {winner = "Human won the game"; return true;};
         return false;
     }
     
