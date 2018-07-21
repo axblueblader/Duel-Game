@@ -1,4 +1,3 @@
 # Duel-Game
 
-A game where 2 players engage in a duel
-Created using Java and Swing
+A text-based game where 2 players engage in a duel much like an extended version of rock-paper-scissor. Created using Java and Swing
