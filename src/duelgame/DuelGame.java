@@ -61,12 +61,12 @@ public class DuelGame {
     }
     
     public boolean isFinished(){
-        if ((human.getHealth() == 0 && bot.getHealth() == 0)
+        if ((human.getHealth() <= 0 && bot.getHealth() <= 0)
                 || (roundCount == MAX_ROUND)) 
         {winner ="The game was draw"; return true;}
-        if(human.getHealth() == 0) 
+        if(human.getHealth() <= 0) 
         {winner = "Bot won the game"; return true;}
-        if(bot.getHealth() == 0) 
+        if(bot.getHealth() <= 0) 
         {winner = "Human won the game"; return true;}
         
         return false;
