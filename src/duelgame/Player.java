@@ -45,10 +45,10 @@ public class Player {
         return shieldCount != MAX_SHIELD;
     }
     public boolean canChannel(){
-        return mana != MAX_MANA;
+        return mana < MAX_MANA;
     }
     public boolean canBlast(){
-        return mana == MAX_MANA;
+        return mana >= MAX_MANA;
     }
     public void updateChanges(int enemyActionIdx) {
         if (canShield() == false) 
