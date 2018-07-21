@@ -5,9 +5,13 @@
  */
 package duelgame;
 
-import java.util.HashSet;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -20,6 +24,7 @@ public class GameUI extends javax.swing.JFrame {
      */
     public GameUI() {
         initComponents();
+        initKeyBindings();
         setLocationRelativeTo(null);
     }
 
@@ -405,6 +410,7 @@ public class GameUI extends javax.swing.JFrame {
         roundNum.setFocusable(false);
 
         jButton1.setText("GUIDE");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guideButtonActionPerformed(evt);
@@ -470,10 +476,42 @@ public class GameUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private static final String[] ACTION_NAME = {"SLASH", "SHIELD", "CHANNEL", "BLAST", "IDLE"};
-
+    private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
     private void updateRound() {
         roundNum.setText(game.getRoundCount() + "/10");
     }
+    private final Action lockAction = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // lock choice and continue
+            lockButtonActionPerformed(e);
+            }
+        };
+    
+    private class chooseAction extends AbstractAction{
+        private final int actionIndex;
+        chooseAction(int actionIdx){
+            actionIndex = actionIdx;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e){
+            updateChoice(actionIndex);
+        }
+    };
+    
+    private void initKeyBindings() { 
+        lockButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("V"),"lockChoice");
+        lockButton.getActionMap().put("lockChoice", lockAction);
+        slashButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("Z"),"slashChoice");
+        slashButton.getActionMap().put("slashChoice", new chooseAction(0));
+        shieldButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("X"),"shieldChoice");
+        shieldButton.getActionMap().put("shieldChoice", new chooseAction(1));
+        channelButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("C"),"channelChoice");
+        channelButton.getActionMap().put("channelChoice", new chooseAction(2));
+        blastButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("F"),"blastChoice");
+        blastButton.getActionMap().put("blastChoice", new chooseAction(3));
+    }
+    
     public final class Properties {
         private static final int HEALTH = 0;
         private static final int MANA = 1; 
