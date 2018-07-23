@@ -25,6 +25,7 @@ public class GameUI extends javax.swing.JFrame {
     public GameUI() {
         initComponents();
         initKeyBindings();
+        initButtonTexts();
         setLocationRelativeTo(null);
     }
 
@@ -50,7 +51,6 @@ public class GameUI extends javax.swing.JFrame {
         guidePanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         slashButton = new javax.swing.JButton();
         shieldButton = new javax.swing.JButton();
@@ -166,23 +166,10 @@ public class GameUI extends javax.swing.JFrame {
         guidePanel.setLayout(new javax.swing.BoxLayout(guidePanel, javax.swing.BoxLayout.LINE_AXIS));
 
         jTextPane2.setContentType("text/html"); // NOI18N
-        jTextPane2.setText("<html>\r\n  <head>\n\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}\n.tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}\n</style>\r\n  </head>\r\n  <body>\r\n    <h2>Welcome to the Duel Game</h2>\n    <p style=\"margin-top: 0\">\r\n      How to play<br>\nYou're goal is to defeat the enemy before 10 rounds.<br>\nEach round, you can choose between 4 choices.<br>\n<h3>1. SLASH:</h3>\nDeals 2 damage to enemy\n<br>Deals 1 damage to enemy, if enemy use SLASH aswell<br>\n<h3>2. SHIELD:</h3>\nCan block damage from SLASH\n<br>After SHIELD 2 times, it takes 1 turn to recharge<br>\n<h3>3. CHANNEL:</h3>\nIncrease your MANA by 1\n<h3>4. BLAST:</h3>\nRequires 2 MANA to use\n<br>Deals 3 damage to enemy, and block SLASH aswell\n<br><h3>Table for reference:</h3>\n    </p>\r\n<table class=\"tg\">\n  <tr>\n    <th class=\"tg-c3ow\"></th>\n    <th class=\"tg-c3ow\">SLASH</th>\n    <th class=\"tg-c3ow\">SHIELD</th>\n    <th class=\"tg-c3ow\">CHANNEL</th>\n    <th class=\"tg-c3ow\">BLAST</th>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">SLASH</td>\n    <td class=\"tg-c3ow\">1</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">SHIELD</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">CHANNEL</td>\n    <td class=\"tg-c3ow\">2</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">BLAST</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-wp8o\">3</td>\n  </tr>\n</table>\n  </body>\r\n</html>\r\n");
+        jTextPane2.setText("<html>\r\n  <head>\n\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}\n.tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}\n</style>\r\n  </head>\r\n  <body>\r\n    <h2>Welcome to the Duel Game</h2>\n    <p style=\"margin-top: 0\">\r\n      <h3>How to play</h3>\nYou're goal is to defeat the enemy before 10 rounds.<br>\nEach round, you can choose between 4 choices.<br>\n<h3>1. SLASH:</h3>\nDeals 2 damage to enemy\n<br>Deals 1 damage to enemy, if enemy use SLASH aswell<br>\n<h3>2. SHIELD:</h3>\nCan block damage from SLASH\n<br>After SHIELD 2 times, it takes 1 turn to recharge<br>\n<h3>3. CHANNEL:</h3>\nIncrease your MANA by 1\n<h3>4. BLAST:</h3>\nRequires 2 MANA to use\n<br>Deals 3 damage to enemy, and block SLASH aswell\n<br><h3>Table for reference in damage taken:</h3>\n    </p>\r\n<table class=\"tg\">\n  <tr>\n    <th class=\"tg-c3ow\"></th>\n    <th class=\"tg-c3ow\">SLASH</th>\n    <th class=\"tg-c3ow\">SHIELD</th>\n    <th class=\"tg-c3ow\">CHANNEL</th>\n    <th class=\"tg-c3ow\">BLAST</th>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">SLASH</td>\n    <td class=\"tg-c3ow\">1</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">SHIELD</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">CHANNEL</td>\n    <td class=\"tg-c3ow\">2</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-c3ow\">BLAST</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-c3ow\">0</td>\n    <td class=\"tg-wp8o\">3</td>\n  </tr>\n</table>\n  </body>\r\n</html>\r\n");
         jScrollPane3.setViewportView(jTextPane2);
 
         guidePanel.add(jScrollPane3);
-
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DUEL GAME");
@@ -475,8 +462,15 @@ public class GameUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Constant declaration
     private static final String[] ACTION_NAME = {"SLASH", "SHIELD", "CHANNEL", "BLAST", "IDLE"};
     private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
+    private static final String SLASH_KEY = "Z";
+    private static final String SHIELD_KEY = "X";
+    private static final String CHANNEL_KEY = "C";
+    private static final String BLAST_KEY = "F";
+    private static final String LOCK_KEY = "V";
+    
     private void updateRound() {
         roundNum.setText(game.getRoundCount() + "/10");
     }
@@ -487,6 +481,14 @@ public class GameUI extends javax.swing.JFrame {
             lockButtonActionPerformed(e);
             }
         };
+
+    private void initButtonTexts() {
+        lockButton.setText( lockButton.getText() + "(" + LOCK_KEY + ")");
+        slashButton.setText( slashButton.getText() + "(" + SLASH_KEY + ")");
+        shieldButton.setText( shieldButton.getText() + "(" + SHIELD_KEY + ")" );
+        channelButton.setText( channelButton.getText() + "(" + CHANNEL_KEY + ")");
+        blastButton.setText( blastButton.getText() + "(" + BLAST_KEY + ")");
+    }
     
     private class chooseAction extends AbstractAction{
         private final int actionIndex;
@@ -500,15 +502,15 @@ public class GameUI extends javax.swing.JFrame {
     };
     
     private void initKeyBindings() { 
-        lockButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("V"),"lockChoice");
+        lockButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(LOCK_KEY),"lockChoice");
         lockButton.getActionMap().put("lockChoice", lockAction);
-        slashButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("Z"),"slashChoice");
+        slashButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(SLASH_KEY),"slashChoice");
         slashButton.getActionMap().put("slashChoice", new chooseAction(0));
-        shieldButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("X"),"shieldChoice");
+        shieldButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(SHIELD_KEY),"shieldChoice");
         shieldButton.getActionMap().put("shieldChoice", new chooseAction(1));
-        channelButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("C"),"channelChoice");
+        channelButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(CHANNEL_KEY),"channelChoice");
         channelButton.getActionMap().put("channelChoice", new chooseAction(2));
-        blastButton.getInputMap(IFW).put(KeyStroke.getKeyStroke("F"),"blastChoice");
+        blastButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(BLAST_KEY),"blastChoice");
         blastButton.getActionMap().put("blastChoice", new chooseAction(3));
     }
     
@@ -666,7 +668,6 @@ public class GameUI extends javax.swing.JFrame {
     private javax.swing.JTextField humanManaText;
     private javax.swing.JTextField humanShieldText;
     private javax.swing.JButton jButton1;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
