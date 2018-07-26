@@ -8,6 +8,7 @@ package duelgame;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -488,6 +489,8 @@ public class GameUI extends javax.swing.JFrame {
         shieldButton.setText( shieldButton.getText() + "(" + SHIELD_KEY + ")" );
         channelButton.setText( channelButton.getText() + "(" + CHANNEL_KEY + ")");
         blastButton.setText( blastButton.getText() + "(" + BLAST_KEY + ")");
+        JOptionPane.showMessageDialog(null,guidePanel,"Guide",
+                                        JOptionPane.PLAIN_MESSAGE);
     }
     
     private class chooseAction extends AbstractAction{
@@ -498,6 +501,8 @@ public class GameUI extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e){
             updateChoice(actionIndex);
+            JButton btn = (JButton) e.getSource();
+            btn.requestFocusInWindow();
         }
     };
     
@@ -605,7 +610,8 @@ public class GameUI extends javax.swing.JFrame {
 
     private void checkGameCondition() {
         if (game.isFinished()) {
-            JOptionPane.showMessageDialog(new JFrame(), game.getWinner() + "\n A new game will start now", "Dialog",
+            JOptionPane.showMessageDialog(new JFrame(), game.getWinner() 
+                    + "\n A new game will start now", "Dialog",
                     JOptionPane.INFORMATION_MESSAGE);            
             game = new DuelGame();
             updateRound();
@@ -650,6 +656,7 @@ public class GameUI extends javax.swing.JFrame {
             }
         });
         game = new DuelGame();
+        
     }
     private static DuelGame game;
     // Variables declaration - do not modify//GEN-BEGIN:variables
