@@ -22,7 +22,7 @@ public class Player {
     };
     private static final int MAX_SHIELD = 2;
     private static final int MAX_MANA = 2;
-    private static final int MAX_HEALTH = 5;
+    private static final int MAX_HEALTH = 7;
 //  private String name;
     private int health;
     private int mana;
@@ -89,8 +89,20 @@ public class Player {
     public int getHealth() {
         return health;
     }
+    
+    // TO DO: INTRINSICLY DISABLE SHIELD AND BLAST
+    // WHEN CONDITION NOT MET
+    public int checkActionIndex(){
+        return 0;
+    }
+    
     public void setActionIndex(int actionIdx) {
-        actionIndex = actionIdx;
+        if (actionIdx == 1 && !canShield()
+                || (actionIdx == 3 && !canBlast())) {
+            actionIndex = 0;
+        }
+        else
+            actionIndex = actionIdx;
     }
     public int getActionIndex(){
         return actionIndex;

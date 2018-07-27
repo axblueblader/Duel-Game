@@ -82,7 +82,7 @@ public class GameUI extends javax.swing.JFrame {
         roundPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         roundNum = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        guideButton = new javax.swing.JButton();
 
         changesPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -237,13 +237,13 @@ public class GameUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(slashButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(slashButton, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shieldButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(shieldButton, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(channelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(channelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(blastButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(blastButton, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -261,15 +261,18 @@ public class GameUI extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.GridLayout(4, 2, 5, 5));
 
+        jLabel8.setForeground(new java.awt.Color(204, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Health");
+        jLabel8.setText(jLabel1.getText());
         jPanel3.add(jLabel8);
 
+        jLabel9.setForeground(new java.awt.Color(0, 153, 51));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Action");
         jPanel3.add(jLabel9);
 
         botHealthText.setEditable(false);
+        botHealthText.setForeground(new java.awt.Color(204, 0, 0));
         botHealthText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         botHealthText.setText("5");
         botHealthText.setFocusable(false);
@@ -285,21 +288,25 @@ public class GameUI extends javax.swing.JFrame {
         botActionText.setPreferredSize(new java.awt.Dimension(69, 22));
         jPanel3.add(botActionText);
 
+        jLabel10.setForeground(new java.awt.Color(0, 102, 204));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Mana");
         jPanel3.add(jLabel10);
 
+        jLabel11.setForeground(new java.awt.Color(51, 204, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Shield");
         jPanel3.add(jLabel11);
 
         botManaText.setEditable(false);
+        botManaText.setForeground(new java.awt.Color(0, 102, 204));
         botManaText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         botManaText.setText("0");
         botManaText.setFocusable(false);
         jPanel3.add(botManaText);
 
         botShieldText.setEditable(false);
+        botShieldText.setForeground(new java.awt.Color(51, 204, 0));
         botShieldText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         botShieldText.setText("0");
         botShieldText.setFocusable(false);
@@ -324,15 +331,18 @@ public class GameUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(4, 2, 5, 5));
 
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Health");
         jPanel2.add(jLabel1);
 
+        jLabel2.setForeground(new java.awt.Color(0, 153, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Action");
         jPanel2.add(jLabel2);
 
         humanHealthText.setEditable(false);
+        humanHealthText.setForeground(new java.awt.Color(204, 0, 0));
         humanHealthText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         humanHealthText.setText("5");
         humanHealthText.setFocusable(false);
@@ -349,21 +359,25 @@ public class GameUI extends javax.swing.JFrame {
         humanActionText.setPreferredSize(new java.awt.Dimension(69, 22));
         jPanel2.add(humanActionText);
 
+        jLabel5.setForeground(new java.awt.Color(0, 102, 204));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Mana");
         jPanel2.add(jLabel5);
 
+        jLabel6.setForeground(new java.awt.Color(51, 204, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Shield");
         jPanel2.add(jLabel6);
 
         humanManaText.setEditable(false);
+        humanManaText.setForeground(new java.awt.Color(0, 102, 204));
         humanManaText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         humanManaText.setText("0");
         humanManaText.setFocusable(false);
         jPanel2.add(humanManaText);
 
         humanShieldText.setEditable(false);
+        humanShieldText.setForeground(new java.awt.Color(51, 204, 0));
         humanShieldText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         humanShieldText.setText("0");
         humanShieldText.setFocusable(false);
@@ -397,9 +411,9 @@ public class GameUI extends javax.swing.JFrame {
         roundNum.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         roundNum.setFocusable(false);
 
-        jButton1.setText("GUIDE");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guideButton.setText("GUIDE");
+        guideButton.setFocusable(false);
+        guideButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guideButtonActionPerformed(evt);
             }
@@ -414,7 +428,7 @@ public class GameUI extends javax.swing.JFrame {
                 .addGroup(roundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roundNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(guideButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanelLayout.setVerticalGroup(
@@ -425,7 +439,7 @@ public class GameUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(roundNum, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guideButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -437,10 +451,10 @@ public class GameUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(roundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -471,6 +485,7 @@ public class GameUI extends javax.swing.JFrame {
     private static final String CHANNEL_KEY = "C";
     private static final String BLAST_KEY = "F";
     private static final String LOCK_KEY = "V";
+    private static final String GUIDE_KEY = "G";
     
     private void updateRound() {
         roundNum.setText(game.getRoundCount() + "/10");
@@ -482,16 +497,14 @@ public class GameUI extends javax.swing.JFrame {
             lockButtonActionPerformed(e);
             }
         };
-
-    private void initButtonTexts() {
-        lockButton.setText( lockButton.getText() + "(" + LOCK_KEY + ")");
-        slashButton.setText( slashButton.getText() + "(" + SLASH_KEY + ")");
-        shieldButton.setText( shieldButton.getText() + "(" + SHIELD_KEY + ")" );
-        channelButton.setText( channelButton.getText() + "(" + CHANNEL_KEY + ")");
-        blastButton.setText( blastButton.getText() + "(" + BLAST_KEY + ")");
+    
+    private final Action openGuide = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e){
         JOptionPane.showMessageDialog(null,guidePanel,"Guide",
                                         JOptionPane.PLAIN_MESSAGE);
-    }
+        }
+    };
     
     private class chooseAction extends AbstractAction{
         private final int actionIndex;
@@ -506,6 +519,17 @@ public class GameUI extends javax.swing.JFrame {
         }
     };
     
+    private void initButtonTexts() {
+        lockButton.setText( lockButton.getText() + "(" + LOCK_KEY + ")");
+        slashButton.setText( slashButton.getText() + "(" + SLASH_KEY + ")");
+        shieldButton.setText( shieldButton.getText() + "(" + SHIELD_KEY + ")" );
+        channelButton.setText( channelButton.getText() + "(" + CHANNEL_KEY + ")");
+        blastButton.setText( blastButton.getText() + "(" + BLAST_KEY + ")");
+        guideButton.setText( guideButton.getText() + "(" + GUIDE_KEY + ")");
+        JOptionPane.showMessageDialog(null,guidePanel,"Guide",
+                                        JOptionPane.PLAIN_MESSAGE);
+    }
+    
     private void initKeyBindings() { 
         lockButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(LOCK_KEY),"lockChoice");
         lockButton.getActionMap().put("lockChoice", lockAction);
@@ -517,6 +541,8 @@ public class GameUI extends javax.swing.JFrame {
         channelButton.getActionMap().put("channelChoice", new chooseAction(2));
         blastButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(BLAST_KEY),"blastChoice");
         blastButton.getActionMap().put("blastChoice", new chooseAction(3));
+        guideButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(GUIDE_KEY),"openGuide");
+        guideButton.getActionMap().put("openGuide", openGuide);
     }
     
     public final class Properties {
@@ -595,8 +621,6 @@ public class GameUI extends javax.swing.JFrame {
             showProperties();
             updateButtons();
             checkGameCondition();
-            // TODO: Centering frames
-            // popup frame showChangesFrame
         } else {
             JOptionPane.showMessageDialog(new JFrame(), "Choose an action", "Dialog",
                     JOptionPane.ERROR_MESSAGE);
@@ -669,12 +693,12 @@ public class GameUI extends javax.swing.JFrame {
     private javax.swing.JTextField botShieldText;
     private javax.swing.JPanel changesPanel;
     private javax.swing.JButton channelButton;
+    private javax.swing.JButton guideButton;
     private javax.swing.JPanel guidePanel;
     private javax.swing.JTextField humanActionText;
     private javax.swing.JTextField humanHealthText;
     private javax.swing.JTextField humanManaText;
     private javax.swing.JTextField humanShieldText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

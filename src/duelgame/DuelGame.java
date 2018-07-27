@@ -20,7 +20,7 @@ public class DuelGame {
     private final Player bot;
     public static final int HUMAN = 0;
     public static final int BOT = 1;
-    private static final int MAX_ROUND = 10;
+    private static final int MAX_ROUND = 15;
     private int roundCount;
 
     private String winner;
