@@ -488,7 +488,7 @@ public class GameUI extends javax.swing.JFrame {
     private static final String GUIDE_KEY = "G";
     
     private void updateRound() {
-        roundNum.setText(game.getRoundCount() + "/10");
+        roundNum.setText(game.getRoundCount() + "/" + DuelGame.MAX_ROUND );
     }
     private final Action lockAction = new AbstractAction() {
         @Override
@@ -611,7 +611,8 @@ public class GameUI extends javax.swing.JFrame {
     }//GEN-LAST:event_blastButtonActionPerformed
 
     private void lockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockButtonActionPerformed
-        if (game.isPlayerReady()) {
+        int invalidAction = game.isPlayerReady();
+        if (invalidAction == 0) {
             game.runGameLogic();
             //This is put here because the bot choice should
             //only be shown after player has chosen
@@ -622,8 +623,20 @@ public class GameUI extends javax.swing.JFrame {
             updateButtons();
             checkGameCondition();
         } else {
-            JOptionPane.showMessageDialog(new JFrame(), "Choose an action", "Dialog",
+            switch (invalidAction){
+                case 1: JOptionPane.showMessageDialog(new JFrame(), "Can't SHIELD this turn", "Dialog",
                     JOptionPane.ERROR_MESSAGE);
+                break;
+                case 2: JOptionPane.showMessageDialog(new JFrame(), "Can't CHANNEL this turn", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+                break;
+                case 3: JOptionPane.showMessageDialog(new JFrame(), "Can't BLAST this turn", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+                break;
+                default: JOptionPane.showMessageDialog(new JFrame(), "Choose an action", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+                break;
+            }
         }
     }//GEN-LAST:event_lockButtonActionPerformed
 

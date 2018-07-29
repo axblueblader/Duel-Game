@@ -90,21 +90,17 @@ public class Player {
         return health;
     }
     
-    // TO DO: INTRINSICLY DISABLE SHIELD AND BLAST
-    // WHEN CONDITION NOT MET
     public int checkActionIndex(){
+        if (actionIndex == 1 && !canShield()) return 1;
+        if (actionIndex == 2 && !canChannel()) return 2;
+        if (actionIndex == 3 && !canBlast()) return 3; 
         return 0;
     }
     
     public void setActionIndex(int actionIdx) {
-        if (actionIdx == 1 && !canShield()
-                || (actionIdx == 3 && !canBlast())) {
-            actionIndex = 0;
-        }
-        else
             actionIndex = actionIdx;
     }
-    public int getActionIndex(){
+    public int getActionIndex(){        
         return actionIndex;
     }
 }

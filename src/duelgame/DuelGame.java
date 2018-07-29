@@ -20,7 +20,7 @@ public class DuelGame {
     private final Player bot;
     public static final int HUMAN = 0;
     public static final int BOT = 1;
-    private static final int MAX_ROUND = 15;
+    public static final int MAX_ROUND = 15;
     private int roundCount;
 
     private String winner;
@@ -30,13 +30,16 @@ public class DuelGame {
         roundCount = 0;
     }
     
-    public boolean isPlayerReady(){
-        return human.getActionIndex() != 4;
+    public int isPlayerReady(){
+        return human.checkActionIndex();
     }
     
     public int getRoundCount() {
         return roundCount;
     }
+    //TO DO: reset player choice after round
+    //and custom dialog when choice unavailable
+    
     public void runGameLogic() {
         // COMPUTE AI DECISION HERE
         Random r = new Random();
