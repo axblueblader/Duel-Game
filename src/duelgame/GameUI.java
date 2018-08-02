@@ -12,11 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 /**
  *
- * @author Mikami
+ * @author Blu
  */
 public class GameUI extends javax.swing.JFrame {
 
@@ -274,7 +275,7 @@ public class GameUI extends javax.swing.JFrame {
         botHealthText.setEditable(false);
         botHealthText.setForeground(new java.awt.Color(204, 0, 0));
         botHealthText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        botHealthText.setText("5");
+        botHealthText.setText("0");
         botHealthText.setFocusable(false);
         jPanel3.add(botHealthText);
 
@@ -344,7 +345,7 @@ public class GameUI extends javax.swing.JFrame {
         humanHealthText.setEditable(false);
         humanHealthText.setForeground(new java.awt.Color(204, 0, 0));
         humanHealthText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        humanHealthText.setText("5");
+        humanHealthText.setText("0");
         humanHealthText.setFocusable(false);
         jPanel2.add(humanHealthText);
 
@@ -406,7 +407,7 @@ public class GameUI extends javax.swing.JFrame {
 
         roundNum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         roundNum.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        roundNum.setText("10/10");
+        roundNum.setText("0/0");
         roundNum.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         roundNum.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         roundNum.setFocusable(false);
@@ -531,20 +532,18 @@ public class GameUI extends javax.swing.JFrame {
     }
     
     private void initKeyBindings() { 
-        lockButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(LOCK_KEY),"lockChoice");
-        lockButton.getActionMap().put("lockChoice", lockAction);
-        slashButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(SLASH_KEY),"slashChoice");
-        slashButton.getActionMap().put("slashChoice", new chooseAction(0));
-        shieldButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(SHIELD_KEY),"shieldChoice");
-        shieldButton.getActionMap().put("shieldChoice", new chooseAction(1));
-        channelButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(CHANNEL_KEY),"channelChoice");
-        channelButton.getActionMap().put("channelChoice", new chooseAction(2));
-        blastButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(BLAST_KEY),"blastChoice");
-        blastButton.getActionMap().put("blastChoice", new chooseAction(3));
-        guideButton.getInputMap(IFW).put(KeyStroke.getKeyStroke(GUIDE_KEY),"openGuide");
-        guideButton.getActionMap().put("openGuide", openGuide);
+        setKeyBindings(lockButton,LOCK_KEY,"lockChoice",lockAction);
+        setKeyBindings(slashButton,SLASH_KEY,"slashChoice",new chooseAction(0));
+        setKeyBindings(shieldButton,SHIELD_KEY,"shieldChoice",new chooseAction(1));
+        setKeyBindings(channelButton,CHANNEL_KEY,"channelChoice",new chooseAction(2));
+        setKeyBindings(blastButton,BLAST_KEY,"blastChoice",new chooseAction(3));
+        setKeyBindings(guideButton,GUIDE_KEY,"openGuide",openGuide);
     }
     
+    public void setKeyBindings(JButton button,String key, String name, Action action){
+      button.getInputMap(IFW).put(KeyStroke.getKeyStroke(key), name);
+      button.getActionMap().put(name,action);
+    };
     public final class Properties {
         private static final int HEALTH = 0;
         private static final int MANA = 1; 
@@ -573,12 +572,16 @@ public class GameUI extends javax.swing.JFrame {
     public void showProperties() {
         int[] botProperties = game.getPlayerProperties(DuelGame.BOT);
         int[] humanProperties = game.getPlayerProperties(DuelGame.HUMAN);
-        humanHealthText.setText("" + humanProperties[Properties.HEALTH]);
-        humanManaText.setText("" + humanProperties[Properties.MANA]);
-        humanShieldText.setText("" + humanProperties[Properties.SHIELD]);
-        botHealthText.setText("" + botProperties[Properties.HEALTH]);
-        botManaText.setText("" + botProperties[Properties.MANA]);
-        botShieldText.setText("" + botProperties[Properties.SHIELD]);
+        JTextField [] humanTexts = {humanHealthText,humanManaText,humanShieldText};
+        JTextField [] botTexts = {botHealthText,botManaText,botShieldText};
+        updatePropertiesText(humanTexts,humanProperties);
+        updatePropertiesText(botTexts,botProperties);
+    }
+    
+    public void updatePropertiesText(JTextField [] textField, int [] properties) {
+        textField[Properties.HEALTH].setText("" + properties[Properties.HEALTH]);
+        textField[Properties.MANA].setText("" + properties[Properties.MANA]);
+        textField[Properties.SHIELD].setText("" + properties[Properties.SHIELD]);
     }
 
     public void updateButtons() {
@@ -612,6 +615,7 @@ public class GameUI extends javax.swing.JFrame {
 
     private void lockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockButtonActionPerformed
         int invalidAction = game.isPlayerReady();
+        showProperties();
         if (invalidAction == 0) {
             game.runGameLogic();
             //This is put here because the bot choice should
@@ -619,7 +623,6 @@ public class GameUI extends javax.swing.JFrame {
             botActionText.setText(ACTION_NAME[game.getActionIdx(1)]);
             updateRound();
             showChanges();
-            showProperties();
             updateButtons();
             checkGameCondition();
         } else {
@@ -692,8 +695,7 @@ public class GameUI extends javax.swing.JFrame {
                 new GameUI().setVisible(true);
             }
         });
-        game = new DuelGame();
-        
+        game = new DuelGame();        
     }
     private static DuelGame game;
     // Variables declaration - do not modify//GEN-BEGIN:variables

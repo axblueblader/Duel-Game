@@ -94,6 +94,7 @@ public class Player {
         if (actionIndex == 1 && !canShield()) return 1;
         if (actionIndex == 2 && !canChannel()) return 2;
         if (actionIndex == 3 && !canBlast()) return 3; 
+        if (actionIndex == 4) return 4;
         return 0;
     }
     
