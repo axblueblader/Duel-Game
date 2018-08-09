@@ -20,9 +20,9 @@ public class Player {
             { 2, 0, 0, 3 }, // CHANNEL vs sl,sh,ch,bl
             { 0, 0, 0, 3 }  // BLAST vs sl,sh,ch,bl
     };
-    private static final int MAX_SHIELD = 2;
-    private static final int MAX_MANA = 2;
-    private static final int MAX_HEALTH = 7;
+    private static final int MAX_SHIELD = 2; // SHIELD limit before reset
+    private static final int MAX_MANA = 2; // MANA required to BLAST
+    private static final int MAX_HEALTH = 8;
 //  private String name;
     private int health;
     private int mana;
@@ -58,16 +58,19 @@ public class Player {
         damageTaken = DAMAGE_RESULT[actionIndex][enemyActionIdx];
         switch (actionIndex) {
             case 1:
-                shieldChanges = 1;
+                shieldChanges += 1;
                 break;
             case 2:
-                manaChanges = 1;
+                manaChanges += 1;
                 break;
             case 3:
                 manaChanges = -mana;
                 break; 
             default:
                 break;
+        }
+        if (actionIndex == 1 && enemyActionIdx == 0) {
+            manaChanges +=1;
         }
     }
     

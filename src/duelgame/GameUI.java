@@ -264,7 +264,7 @@ public class GameUI extends javax.swing.JFrame {
 
         jLabel8.setForeground(new java.awt.Color(204, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText(jLabel1.getText());
+        jLabel8.setText("Health");
         jPanel3.add(jLabel8);
 
         jLabel9.setForeground(new java.awt.Color(0, 153, 51));
@@ -689,11 +689,8 @@ public class GameUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GameUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GameUI().setVisible(true);
         });
         game = new DuelGame();        
     }

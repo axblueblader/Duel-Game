@@ -80,6 +80,7 @@ public class DuelGame {
     }
     public boolean shieldEnabled(){
         return human.canShield();
+        
     }
     public boolean channelEnabled(){
         return human.canChannel();
