@@ -20,9 +20,9 @@ public class Player {
             { 2, 0, 0, 3 }, // CHANNEL vs sl,sh,ch,bl
             { 0, 0, 0, 3 }  // BLAST vs sl,sh,ch,bl
     };
-    private static final int MAX_SHIELD = 2; // SHIELD limit before reset
-    private static final int MAX_MANA = 2; // MANA required to BLAST
-    private static final int MAX_HEALTH = 8;
+    public static final int MAX_SHIELD = 2; // SHIELD limit before reset
+    public static final int MAX_MANA = 2; // MANA required to BLAST
+    public static final int MAX_HEALTH = 10;
 //  private String name;
     private int health;
     private int mana;

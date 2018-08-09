@@ -587,7 +587,7 @@ public class GameUI extends javax.swing.JFrame {
     public void updateButtons() {
         shieldButton.setEnabled(game.shieldEnabled());
         blastButton.setEnabled(game.blastEnabled());
-        channelButton.setEnabled(game.channelEnabled());
+        //channelButton.setEnabled(game.channelEnabled());
     }
 
     public void updateChoice(int actionIdx) {
