@@ -5,6 +5,8 @@
  */
 package duelgame;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -14,37 +16,36 @@ public class GreedyAI {
     // TRY TO GET BEST CURRENT CHOICE USING GREEDY
     // CHECK ALL POSSIBLE PATHS, CHOOSE HIGHEST SCORE
     
-    
-    public void getNextState(int move){
-        // WRAPPER FUNCTION
-    }
-    
-    private void getNextState(int move, GameState currentState){
-        // COMPUTE ALL POSSIBLE STATE AND GIVE THEM SCORES
-        
-        
-        // 
+    private ArrayList<GameState> getNextState(int move, GameState currentState){
+        // COMPUTE ALL POSSIBLE STATE AND SCORE WITH DELTA HP
+        ArrayList<GameState> gameStates = new ArrayList<>();
+        for (int enemyMove = 0; enemyMove < 3; enemyMove++) {
+            int selfHealth = currentState.getSelfHealth() - Player.DAMAGE_RESULT[move][enemyMove];
+            int enemyHealth = currentState.getEnemyHealth() - Player.DAMAGE_RESULT[enemyMove][move];
+            int selfMana = currentState.getSelfMana() + Player.MANA_RESULT[move][enemyMove];
+            int enemyMana = currentState.getEnemyMana() + Player.MANA_RESULT[enemyMove][move];
+            int selfShield = Player.SHIELD_RESULT[currentState.getSelfShield()][move];
+            int enemyShield = Player.SHIELD_RESULT[currentState.getEnemyHealth()][enemyMove];
+            int newSelf[] = {selfHealth,selfMana,selfShield};
+            int newEnemy[] = {enemyHealth,enemyMana,enemyShield};
+            GameState newState = new GameState(newSelf,newEnemy);
+            gameStates.add(newState);
+        }        
+        return gameStates;
     };
     
-    private class GameState {
-        private int selfHealth;
-        private int selfMana;
-        private int selfShield;
-        private int enemyHealth;
-        private int enemyMana;
-        private int enemyShield;
-        private int stateScore;
-        
-        public GameState(int[] self,int[] enemy){
-            selfHealth = self[0];
-            selfMana = self[1];
-            selfShield = self[2];
-            enemyHealth = enemy[0];
-            enemyMana = enemy[1];
-            enemyShield = enemy[2];
-            stateScore = 0;
+    private ArrayList<Integer> calScores(ArrayList<GameState> gameStates) {
+        ArrayList<Integer> scores = new ArrayList<>();
+        for (GameState element: gameStates) {
+            scores.add(element.calculateStateScore());
         }
-    }
+        return scores;
+    };
+        
+    public int getBestMove(int level){
+        return 1;
+    };
+    
     int[] startVals = {Player.MAX_HEALTH,0,0};
     // GIVE DETAIL DEFINITION FOR ALL POSSIBLE STATE
     private GameState startingState = new GameState(startVals,startVals);

@@ -13,12 +13,26 @@ package duelgame;
  * @author Blu
  */
 public class Player {
-    private static final int[][] DAMAGE_RESULT = { 
+    public static final int[][] DAMAGE_RESULT = { 
             //  result is damage taken by this player
             { 1, 0, 0, 3 }, // SLASH vs sl,sh,ch,bl
             { 0, 0, 0, 3 }, // SHIELD vs sl,sh,ch,bl
             { 2, 0, 0, 3 }, // CHANNEL vs sl,sh,ch,bl
             { 0, 0, 0, 3 }  // BLAST vs sl,sh,ch,bl
+    };
+    
+    public static final int[][] MANA_RESULT = {
+            { 0, 0, 0, 0},
+            { 1, 0, 0, 0},
+            { 2, 2, 2, 2},
+            {-2,-2,-2,-2}
+    };
+    
+    public static final int[][] SHIELD_RESULT = {
+            { 0, 1, 0},
+            { 1, 2, 0},
+            { 0, 1, 0},
+            { 0, 1, 0}
     };
     public static final int MAX_SHIELD = 2; // SHIELD limit before reset
     public static final int MAX_MANA = 2; // MANA required to BLAST
