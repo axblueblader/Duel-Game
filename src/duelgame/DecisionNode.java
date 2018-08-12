@@ -5,7 +5,7 @@
  */
 package duelgame;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -18,7 +18,7 @@ public class DecisionNode {
     private final int decision;
     //private Map<String,int> attributes;
     private DecisionNode parent;
-    private List<DecisionNode> children;
+    private ArrayList<DecisionNode> children;
     
     public DecisionNode(int decision){
         weight = 1;
@@ -44,6 +44,9 @@ public class DecisionNode {
     public DecisionNode addChild(int decision){
         DecisionNode childNode = new DecisionNode(decision);
         childNode.parent = this;
+        if (children == null) {
+            children = new ArrayList<>();
+        }
         this.children.add(childNode);
         return childNode;
     };
