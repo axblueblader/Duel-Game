@@ -22,12 +22,12 @@ public class GreedyAI {
     private ArrayList<GameState> getNextState(int move, GameState currentState){
         ArrayList<GameState> gameStates = new ArrayList<>();
         for (int enemyMove = 0; enemyMove < 4; enemyMove++) {
-            int selfHealth = currentState.getSelfHealth() - Player.DAMAGE_RESULT[move][enemyMove];
-            int enemyHealth = currentState.getEnemyHealth() - Player.DAMAGE_RESULT[enemyMove][move];
-            int selfMana = currentState.getSelfMana() + Player.MANA_RESULT[move][enemyMove];
-            int enemyMana = currentState.getEnemyMana() + Player.MANA_RESULT[enemyMove][move];
-            int selfShield = Player.SHIELD_RESULT[currentState.getSelfShield()][move];
-            int enemyShield = Player.SHIELD_RESULT[currentState.getEnemyHealth()][enemyMove];
+            int selfHealth = currentState.getSelfHealth() - Player.DAMAGE_TAKEN[move][enemyMove];
+            int enemyHealth = currentState.getEnemyHealth() - Player.DAMAGE_TAKEN[enemyMove][move];
+            int selfMana = currentState.getSelfMana() + Player.MANA_CHANGE[move][enemyMove];
+            int enemyMana = currentState.getEnemyMana() + Player.MANA_CHANGE[enemyMove][move];
+            int selfShield = Player.SHIELD_VALUE[move][currentState.getSelfShield()];
+            int enemyShield = Player.SHIELD_VALUE[enemyMove][currentState.getEnemyShield()];
             int newSelf[] = {selfHealth,selfMana,selfShield};
             int newEnemy[] = {enemyHealth,enemyMana,enemyShield};
             GameState newState = new GameState(newSelf,newEnemy);
@@ -45,12 +45,12 @@ public class GreedyAI {
         return scores;
     }
         
-    private int getMaxScore(ArrayList<Integer> scores){
-        int max = 0;
+    private int getMinScore(ArrayList<Integer> scores){
+        int min = scores.get(0);
         for (Integer element: scores) {
-            max = max > element? max:element;
+            min = min < element? min:element;
         }
-        return max;
+        return min;
     }
     
     // Variable @level changes the difficulty through the number of look ahead
@@ -60,7 +60,7 @@ public class GreedyAI {
         int maxScore = 0; int bestMove = 0;
         for (int move = 0; move < 4; move++) {
             ArrayList<GameState> gameStates = getNextState(move,currentState);
-            int moveScore = getMaxScore(calScores(gameStates));
+            int moveScore = getMinScore(calScores(gameStates));
             if (moveScore > maxScore) {
                 maxScore = moveScore;
                 bestMove = move;
@@ -71,16 +71,11 @@ public class GreedyAI {
     
     // WRAPPER FUNCTION
     public int getBestMove(){
-        return getBestMove(0,startingState);
-    }
-    int[] startSelf;
-    int[] startEnemy;
-    public void setStartState(int[] self,int[] enemy){
-        startSelf = self;
-        startEnemy = enemy;
+        return getBestMove(0,currentState);
     }
     
-    // GIVE DETAIL DEFINITION FOR ALL POSSIBLE STATE
-    private GameState startingState = new GameState(startSelf,startEnemy);
-    // GIVE SCORE TO EACH STATE
+    private GameState currentState;
+    public void makeCurrentState(int[] selfProperties, int[] enemyProperties){
+        currentState = new GameState(selfProperties, enemyProperties);
+    }
 }

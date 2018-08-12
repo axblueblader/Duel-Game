@@ -478,15 +478,32 @@ public class GameUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Constant declaration
+    // Constants for action names
     private static final String[] ACTION_NAME = {"SLASH", "SHIELD", "CHANNEL", "BLAST", "IDLE"};
-    private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
+    
+    // Constants for action index
+    private static final int SLASH_ACTION_INDEX = 0;
+    private static final int SHIELD_ACTION_INDEX = 1;
+    private static final int CHANNEL_ACTION_INDEX = 2;
+    private static final int BLAST_ACTION_INDEX = 3;
+    
+    // Constants for hotkeys
     private static final String SLASH_KEY = "Z";
     private static final String SHIELD_KEY = "X";
     private static final String CHANNEL_KEY = "C";
     private static final String BLAST_KEY = "F";
     private static final String LOCK_KEY = "V";
     private static final String GUIDE_KEY = "G";
+    
+    // CLASS LIKE THIS / CONSTANTS / ENUMS : which is better?
+    public final class Properties {
+        private static final int HEALTH = 0;
+        private static final int MANA = 1; 
+        private static final int SHIELD = 2;
+        private Properties() {};
+    }
+    
+    private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
     
     private void updateRound() {
         roundNum.setText(game.getRoundCount() + "/" + DuelGame.MAX_ROUND );
@@ -533,10 +550,10 @@ public class GameUI extends javax.swing.JFrame {
     
     private void initKeyBindings() { 
         setKeyBindings(lockButton,LOCK_KEY,"lockChoice",lockAction);
-        setKeyBindings(slashButton,SLASH_KEY,"slashChoice",new chooseAction(0));
-        setKeyBindings(shieldButton,SHIELD_KEY,"shieldChoice",new chooseAction(1));
-        setKeyBindings(channelButton,CHANNEL_KEY,"channelChoice",new chooseAction(2));
-        setKeyBindings(blastButton,BLAST_KEY,"blastChoice",new chooseAction(3));
+        setKeyBindings(slashButton,SLASH_KEY,"slashChoice",new chooseAction(SLASH_ACTION_INDEX));
+        setKeyBindings(shieldButton,SHIELD_KEY,"shieldChoice",new chooseAction(SHIELD_ACTION_INDEX));
+        setKeyBindings(channelButton,CHANNEL_KEY,"channelChoice",new chooseAction(CHANNEL_ACTION_INDEX));
+        setKeyBindings(blastButton,BLAST_KEY,"blastChoice",new chooseAction(BLAST_ACTION_INDEX));
         setKeyBindings(guideButton,GUIDE_KEY,"openGuide",openGuide);
     }
     
@@ -544,12 +561,7 @@ public class GameUI extends javax.swing.JFrame {
       button.getInputMap(IFW).put(KeyStroke.getKeyStroke(key), name);
       button.getActionMap().put(name,action);
     };
-    public final class Properties {
-        private static final int HEALTH = 0;
-        private static final int MANA = 1; 
-        private static final int SHIELD = 2;
-        private Properties() {};
-    }
+    
     
     public void showChanges() {
         int[] humanChanges = game.getPlayerChanges(DuelGame.HUMAN);
@@ -592,25 +604,25 @@ public class GameUI extends javax.swing.JFrame {
 
     public void updateChoice(int actionIdx) {
         game.setHumanAction(actionIdx);
-        humanActionText.setText(ACTION_NAME[game.getActionIdx(0)]);
+        humanActionText.setText(ACTION_NAME[game.getActionIdx(DuelGame.HUMAN)]);
         showProperties();
     }
 
     
     private void slashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slashButtonActionPerformed
-        updateChoice(0);
+        updateChoice(SLASH_ACTION_INDEX);
     }//GEN-LAST:event_slashButtonActionPerformed
 
     private void shieldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shieldButtonActionPerformed
-        updateChoice(1);
+        updateChoice(SHIELD_ACTION_INDEX);
     }//GEN-LAST:event_shieldButtonActionPerformed
 
     private void channelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_channelButtonActionPerformed
-        updateChoice(2);
+        updateChoice(CHANNEL_ACTION_INDEX);
     }//GEN-LAST:event_channelButtonActionPerformed
 
     private void blastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blastButtonActionPerformed
-        updateChoice(3);
+        updateChoice(BLAST_ACTION_INDEX);
     }//GEN-LAST:event_blastButtonActionPerformed
 
     private void lockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockButtonActionPerformed
@@ -620,7 +632,7 @@ public class GameUI extends javax.swing.JFrame {
             game.runGameLogic();
             //This is put here because the bot choice should
             //only be shown after player has chosen
-            botActionText.setText(ACTION_NAME[game.getActionIdx(1)]);
+            botActionText.setText(ACTION_NAME[game.getActionIdx(DuelGame.BOT)]);
             updateRound();
             showChanges();
             updateButtons();
