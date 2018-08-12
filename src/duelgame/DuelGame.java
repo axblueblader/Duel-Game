@@ -65,7 +65,7 @@ public class DuelGame {
     GreedyAI theAI = new GreedyAI();
     private void makeAIMove(){
         theAI.makeCurrentState(bot.getProperties(), human.getProperties());
-        bot.setActionIndex(theAI.getBestMove());
+        bot.setActionIndex(theAI.getBestMove(6));
     }
     
     private void updatePropertiesChanges(){
