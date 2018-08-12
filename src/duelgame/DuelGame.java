@@ -52,15 +52,31 @@ public class DuelGame {
     
         }
         else bot.setActionIndex(0);
+
+        makeAIMove();
         
         // INCREASE ROUND COUNT
-        roundCount = roundCount + 1;
+        increaseRoundCount();
         
         // UPDATE CHANGES
+        updatePropertiesChanges();
+    }
+    
+    GreedyAI theAI = new GreedyAI();
+    private void makeAIMove(){
+        theAI.makeCurrentState(bot.getProperties(), human.getProperties());
+        bot.setActionIndex(theAI.getBestMove());
+    }
+    
+    private void updatePropertiesChanges(){
         human.updateChanges(bot.getActionIndex());
         bot.updateChanges(human.getActionIndex());
         human.updateProperties();
         bot.updateProperties();
+    }
+    
+    private void increaseRoundCount(){
+        roundCount = roundCount + 1;
     }
     
     public boolean isFinished(){

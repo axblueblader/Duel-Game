@@ -13,7 +13,7 @@ package duelgame;
  * @author Blu
  */
 public class Player {
-    public static final int[][] DAMAGE_RESULT = { 
+    public static final int[][] DAMAGE_TAKEN = { 
             //  result is damage taken by this player
             { 1, 0, 0, 3 }, // SLASH vs sl,sh,ch,bl
             { 0, 0, 0, 3 }, // SHIELD vs sl,sh,ch,bl
@@ -21,27 +21,29 @@ public class Player {
             { 0, 0, 0, 3 }  // BLAST vs sl,sh,ch,bl
     };
     
-    public static final int[][] MANA_RESULT = {
+    public static final int[][] MANA_CHANGE = {
             { 0, 0, 0, 0},
             { 1, 0, 0, 0},
-            { 2, 2, 2, 2},
+            { 1, 1, 1, 1},
             {-2,-2,-2,-2}
     };
     
-    public static final int[][] SHIELD_RESULT = {
+    // TODO: Consider changing this to be calculate the same way as mana
+    // Instead of directly changing the value
+    public static final int[][] SHIELD_VALUE = {
             { 0, 1, 0},
             { 1, 2, 0},
             { 0, 1, 0},
             { 0, 1, 0}
     };
     public static final int MAX_SHIELD = 2; // SHIELD limit before reset
-    public static final int MAX_MANA = 2; // MANA required to BLAST
+    public static final int BLAST_MANA = 2; // MANA required to BLAST
     public static final int MAX_HEALTH = 10;
 //  private String name;
     private int health;
     private int mana;
     private int manaChanges;
-    private int shieldCount;
+    private int shieldCounter;
     private int shieldChanges;
     private int damageTaken;
     private int actionIndex;
@@ -50,26 +52,26 @@ public class Player {
  //     name = playerName;
         health = MAX_HEALTH;
         mana = 0;
-        shieldCount = 0;
+        shieldCounter = 0;
         damageTaken = 0;
         actionIndex = 4;
     }
 
     public boolean canShield(){
-        return shieldCount != MAX_SHIELD;
+        return shieldCounter != MAX_SHIELD;
     }
     public boolean canChannel(){
-        return mana < MAX_MANA;
+        return mana < BLAST_MANA;
     }
     public boolean canBlast(){
-        return mana >= MAX_MANA;
+        return mana >= BLAST_MANA;
     }
     public void updateChanges(int enemyActionIdx) {
         if (canShield() == false) 
-            shieldCount = 0;
+            shieldCounter = 0;
         shieldChanges = 0;
         manaChanges = 0;
-        damageTaken = DAMAGE_RESULT[actionIndex][enemyActionIdx];
+        damageTaken = DAMAGE_TAKEN[actionIndex][enemyActionIdx];
         switch (actionIndex) {
             case 1:
                 shieldChanges += 1;
@@ -91,11 +93,11 @@ public class Player {
     public void updateProperties() {
         health = health - damageTaken;
         mana = mana + manaChanges;
-        shieldCount = shieldCount + shieldChanges;
+        shieldCounter = shieldCounter + shieldChanges;
     }
 
     public int[] getProperties() {
-        int[] propertiesArr = { health, mana, shieldCount };
+        int[] propertiesArr = { health, mana, shieldCounter };
         return propertiesArr;
     }
 
@@ -107,9 +109,10 @@ public class Player {
         return health;
     }
     
+    // TODO: Ambiguous numbers, needs to be refactor
     public int checkActionIndex(){
         if (actionIndex == 1 && !canShield()) return 1;
-        if (actionIndex == 2 && !canChannel()) return 2;
+        //if (actionIndex == 2 && !canChannel()) return 2;
         if (actionIndex == 3 && !canBlast()) return 3; 
         if (actionIndex == 4) return 4;
         return 0;
